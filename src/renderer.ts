@@ -1,29 +1,37 @@
-/**
- * This file will automatically be loaded by webpack and run in the "renderer" context.
- * To learn more about the differences between the "main" and the "renderer" context in
- * Electron, visit:
- *
- * https://electronjs.org/docs/latest/tutorial/process-model
- *
- * By default, Node.js integration in this file is disabled. When enabling Node.js integration
- * in a renderer process, please be aware of potential security implications. You can read
- * more about security risks here:
- *
- * https://electronjs.org/docs/tutorial/security
- *
- * To enable Node.js integration in this file, open up `main.js` and enable the `nodeIntegration`
- * flag:
- *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
- */
-
+import { createRoot } from "react-dom/client";
+import { ElectronHandler } from "./preload";
+import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
+import React from "react";
+import Main from "./page/Main";
+import Settings from "./page/Settings";
+import Info from "./page/Info";
 import "./index.css";
+
+declare global {
+  interface Window {
+    electron: ElectronHandler;
+  }
+}
+
+const container = document.getElementById("root") as HTMLElement;
+const root = createRoot(container);
+const router = createHashRouter([
+  {
+    path: "/",
+    element: React.createElement(Main),
+  },
+  {
+    path: "/main_window",
+    loader: () => redirect("/"),
+  },
+  {
+    path: "/settings",
+    element: React.createElement(Settings),
+  },
+  {
+    path: "/Info",
+    element: React.createElement(Info),
+  },
+]);
+
+root.render(React.createElement(RouterProvider, { router }));

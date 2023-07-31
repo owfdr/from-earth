@@ -9,6 +9,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "outDir": "dist",
+    "jsx": "react",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
