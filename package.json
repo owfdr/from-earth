@@ -49,6 +49,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "electron-squirrel-startup": "^1.0.0",
     "menubar": "^9.3.0",
     "react": "^18.2.0",
