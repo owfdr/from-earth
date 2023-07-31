@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { ElectronHandler } from "./preload";
 import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
 import React from "react";
-import Home from "./page/Home";
+import Explore from "./page/Explore";
 import Settings from "./page/Settings";
 import Info from "./page/Info";
 import "./index.css";
@@ -18,7 +18,7 @@ const root = createRoot(container);
 const router = createHashRouter([
   {
     path: "/",
-    element: React.createElement(Home),
+    element: React.createElement(Explore),
   },
   {
     path: "/main_window",
