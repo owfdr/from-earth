@@ -1,9 +1,10 @@
 import React from "react";
+import Layout from "../component/Layout";
 
 export default function Info() {
   return (
-    <div>
-      <h1>Info</h1>
-    </div>
+    <Layout>
+      <h1 className="text-2xl">Info</h1>
+    </Layout>
   );
 }
