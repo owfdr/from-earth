@@ -22,13 +22,13 @@ export default function Explore() {
 
   return (
     <Layout>
-      <div className="p-5 max-w-screen-sm min-h-full flex flex-col gap-1 text-gray-700 bg-gray-100">
-        <h1 className="text-3xl line-clamp-2">{earthView?.name}</h1>
+      <div className="flex min-h-full max-w-screen-sm flex-col gap-1 bg-gray-100 p-5 text-gray-700">
+        <h1 className="line-clamp-2 text-3xl">{earthView?.name}</h1>
 
         <div
-          className={`text-sm line-clamp-4 font-inter ${
+          className={`line-clamp-4 font-inter text-sm ${
             wiki
-              ? "cursor-pointer rounded-md hover:bg-gray-200 hover:text-gray-900 duration-150 ease-in-out"
+              ? "cursor-pointer rounded-md duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-900"
               : ""
           }`}
           title="Open in Wikipedia"
@@ -37,8 +37,8 @@ export default function Explore() {
             if (wiki) {
               window.electron.openUrl(
                 `https://en.wikipedia.org/wiki/${encodeURI(
-                  earthView?.region || earthView?.country
-                )}`
+                  earthView?.region || earthView?.country,
+                )}`,
               );
             }
           }}
@@ -48,7 +48,7 @@ export default function Explore() {
 
         <img
           hidden={!earthView}
-          className="rounded-md overflow-hidden hover:brightness-95 transition duration-150 ease-in-out cursor-pointer text-left"
+          className="cursor-pointer overflow-hidden rounded-md text-left transition duration-150 ease-in-out hover:brightness-95"
           src={earthView?.thumbUrl}
           onClick={() => {
             window.electron.openUrl(earthView?.photoUrl);
@@ -56,7 +56,7 @@ export default function Explore() {
         />
 
         <button
-          className="tracking-tight text-xs text-left truncate text-gray-500 hover:text-gray-600 duration-150 ease-in-out"
+          className="truncate text-left text-xs tracking-tight text-gray-500 duration-150 ease-in-out hover:text-gray-600"
           title={earthView?.attribution}
           onClick={() => {
             window.electron.showMessageBox({
@@ -69,7 +69,7 @@ export default function Explore() {
           {earthView?.attribution}
         </button>
 
-        <div className="text-xs my-1 text-gray-500 tracking-tight grid grid-cols-3 gap-3">
+        <div className="my-1 grid grid-cols-3 gap-3 text-xs tracking-tight text-gray-500">
           <div>
             <div>LAT</div>
             <div>{earthView?.lat}</div>
@@ -78,32 +78,32 @@ export default function Explore() {
             <div>LONG</div>
             <div>{earthView?.lng}</div>
           </div>
-          <div className="flex justify-end gap-2 items-center">
+          <div className="flex items-center justify-end gap-2">
             <button
               title="Open in Google Earth"
-              className="text-gray-500 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
+              className="rounded-md p-1 text-gray-500 duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-700"
               onClick={() => {
                 window.electron.openUrl(earthView.earthLink);
               }}
             >
-              <SiGoogleearth className="w-5 h-5" />
+              <SiGoogleearth className="h-5 w-5" />
             </button>
             <button
               title="Open in Google Maps"
-              className="text-gray-500 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
+              className="rounded-md p-1 text-gray-500 duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-700"
               onClick={() => {
                 window.electron.openUrl(earthView.mapsLink);
               }}
             >
-              <SiGooglemaps className="w-5 h-5" />
+              <SiGooglemaps className="h-5 w-5" />
             </button>
           </div>
         </div>
 
         <div className="grow" />
-        <div className="flex text-sm mb-1 gap-3">
+        <div className="mb-1 flex gap-3 text-sm">
           <button
-            className="p-3 w-full border rounded-md bg-white hover:shadow-sm hover:text-gray-900 duration-150 ease-in-out"
+            className="w-full rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm"
             disabled={processing}
             onClick={() => {
               setProcessing(true);
@@ -115,12 +115,12 @@ export default function Explore() {
             {processing ? <Spinner /> : "Set as Wallpaper"}
           </button>
           <button
-            className="p-3 w-full border rounded-md flex-1 bg-white hover:shadow-sm hover:text-gray-900 duration-150 ease-in-out"
+            className="w-full flex-1 rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm"
             onClick={() => {
               fetchData();
             }}
           >
-            <ArrowPathIcon className="w-5 h-5" />
+            <ArrowPathIcon className="h-5 w-5" />
           </button>
         </div>
       </div>

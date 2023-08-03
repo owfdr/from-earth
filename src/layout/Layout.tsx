@@ -7,7 +7,7 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="h-screen max-h-screen flex flex-col">
+    <div className="flex h-screen max-h-screen flex-col">
       <div className="grow overflow-scroll">{children}</div>
       <TabBar />
     </div>

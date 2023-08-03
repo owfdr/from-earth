@@ -59,7 +59,7 @@ ipcMain.handle("newView", async () => {
 
   const keyword = earthView.region ? earthView.region : earthView.country;
   const query = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
-    keyword
+    keyword,
   )}`;
   const wikiResponse = await fetch(query);
   const wikiJson = await wikiResponse.json();
