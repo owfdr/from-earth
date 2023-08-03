@@ -1,7 +1,16 @@
 import { contextBridge, ipcRenderer } from "electron";
 
+type EarthPack = {
+  earthView: EarthView;
+  wiki: string;
+};
+
 const electronHandler = {
   openUrl: (url: string) => ipcRenderer.invoke("openUrl", url),
+  newView: () => ipcRenderer.invoke("newView") as Promise<EarthPack>,
+  setWallpaper: (path: string) => ipcRenderer.invoke("setWallpaper", path),
+  showMessageBox: (options: Electron.MessageBoxOptions) =>
+    ipcRenderer.invoke("showMessageBox", options),
 };
 
 contextBridge.exposeInMainWorld("electron", electronHandler);

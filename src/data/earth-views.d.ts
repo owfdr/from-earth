@@ -1,0 +1,22 @@
+type EarthView = {
+  id: string;
+  name: string;
+  slug: string;
+  title: string;
+  primaryColor: number[];
+  hue: number;
+  lat: number;
+  lng: number;
+  country: string;
+  region: string;
+  attribution: string;
+  photoUrl: string;
+  thumbUrl: string;
+  mapsLink: string;
+  mapsLinkTitle: string;
+  earthLink: string;
+  earthLinkTitle: string;
+  shareUrl: string;
+  nextSlug: string;
+  prevSlug: string;
+};

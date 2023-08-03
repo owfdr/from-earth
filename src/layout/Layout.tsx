@@ -1,5 +1,5 @@
 import React from "react";
-import TabBar from "./TabBar";
+import TabBar from "../component/TabBar";
 
 type Props = {
   children: React.ReactNode;
@@ -7,8 +7,8 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="h-screen flex flex-col">
-      <div className="grow">{children}</div>
+    <div className="h-screen max-h-screen flex flex-col">
+      <div className="grow overflow-scroll">{children}</div>
       <TabBar />
     </div>
   );

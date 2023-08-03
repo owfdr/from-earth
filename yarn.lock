@@ -5018,6 +5018,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-icons@^4.10.1:
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.10.1.tgz#3f3b5eec1f63c1796f6a26174a1091ca6437a500"
+  integrity sha512-/ngzDP/77tlCfqthiiGNZeYFACw85fUjZtLbedmJ5DTlNDIwETxhwBzdOJ21zj4iJdvc0J3y7yOsX3PpxAJzrw==
+
 react-router-dom@^6.14.2:
   version "6.14.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.14.2.tgz#88f520118b91aa60233bd08dbd3fdcaea3a68488"
@@ -6170,6 +6175,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
+
+wallpaper@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/wallpaper/-/wallpaper-7.0.0.tgz#9a7e256370072e0d441081ca4625af9b63cbcfe0"
+  integrity sha512-PZy40Tkvb4tREX49D+DSP0xBoYa1xkbdBMyGKTAB+tHQFQxfY/0i2OW0YwF+PU4o2NBHOVf37IPLolP9gKAkxg==
 
 watchpack@^2.4.0:
   version "2.4.0"
