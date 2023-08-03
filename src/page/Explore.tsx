@@ -22,12 +22,13 @@ export default function Explore() {
 
   return (
     <Layout>
-      <div className="p-5 max-w-screen-sm min-h-full flex flex-col text-gray-700 bg-gray-100">
-        <h1 className="text-3xl mb-3 line-clamp-2">{earthView?.name}</h1>
+      <div className="p-5 max-w-screen-sm min-h-full flex flex-col gap-1 text-gray-700 bg-gray-100">
+        <h1 className="text-3xl line-clamp-2">{earthView?.name}</h1>
+
         <div
-          className={`text-sm line-clamp-4 mb-3 ${
+          className={`text-sm line-clamp-4 ${
             wiki
-              ? "cursor-pointer rounded-md  hover:bg-gray-200 hover:text-gray-900 duration-150 ease-in-out"
+              ? "cursor-pointer rounded-md hover:bg-gray-200 hover:text-gray-900 duration-150 ease-in-out"
               : ""
           }`}
           title="Open in Wikipedia"
@@ -44,6 +45,7 @@ export default function Explore() {
         >
           {(earthView && wiki) || "Wikipedia not found."}
         </div>
+
         <img
           hidden={!earthView}
           className="rounded-md overflow-hidden hover:brightness-95 transition duration-150 ease-in-out cursor-pointer text-left"
@@ -53,41 +55,53 @@ export default function Explore() {
           }}
         />
 
-        <div className="flex justify-end gap-1 mt-1">
-          <button
-            className="text-xs grow my-1 mr-1 text-left truncate text-gray-500 hover:text-gray-600 duration-150 ease-in-out"
-            title={earthView?.attribution}
-            onClick={() => {
-              window.electron.showMessageBox({
-                type: "info",
-                title: "Attribution",
-                message: "Images " + earthView?.attribution,
-              });
-            }}
-          >
-            {earthView?.attribution}
-          </button>
-          <button
-            title="Open in Google Earth"
-            className="text-gray-600 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
-            onClick={() => {
-              window.electron.openUrl(earthView.earthLink);
-            }}
-          >
-            <SiGoogleearth />
-          </button>
-          <button
-            title="Open in Google Maps"
-            className="text-gray-600 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
-            onClick={() => {
-              window.electron.openUrl(earthView.mapsLink);
-            }}
-          >
-            <SiGooglemaps />
-          </button>
+        <button
+          className="tracking-tight text-xs text-left truncate text-gray-500 hover:text-gray-600 duration-150 ease-in-out"
+          title={earthView?.attribution}
+          onClick={() => {
+            window.electron.showMessageBox({
+              type: "info",
+              title: "Attribution",
+              message: "Images " + earthView?.attribution,
+            });
+          }}
+        >
+          {earthView?.attribution}
+        </button>
+
+        <div className="text-xs my-1 text-gray-500 tracking-tight grid grid-cols-3 gap-3">
+          <div>
+            <div>LAT</div>
+            <div>{earthView?.lat}</div>
+          </div>
+          <div>
+            <div>LONG</div>
+            <div>{earthView?.lng}</div>
+          </div>
+          <div className="flex justify-end gap-2 items-center">
+            <button
+              title="Open in Google Earth"
+              className="text-gray-500 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
+              onClick={() => {
+                window.electron.openUrl(earthView.earthLink);
+              }}
+            >
+              <SiGoogleearth className="w-5 h-5" />
+            </button>
+            <button
+              title="Open in Google Maps"
+              className="text-gray-500 hover:text-gray-700 hover:bg-gray-200 p-1 rounded-md duration-150 ease-in-out"
+              onClick={() => {
+                window.electron.openUrl(earthView.mapsLink);
+              }}
+            >
+              <SiGooglemaps className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+
         <div className="grow" />
-        <div className="flex text-sm mb-2 gap-3">
+        <div className="flex text-sm mb-1 gap-3">
           <button
             className="p-3 w-full border rounded-md bg-white hover:shadow-sm hover:text-gray-900 duration-150 ease-in-out"
             disabled={processing}

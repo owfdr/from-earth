@@ -25,7 +25,7 @@ const mb = menubar({
   browserWindow: {
     y: process.platform === "darwin" ? 30 : undefined,
     width: 320,
-    height: 560,
+    height: 570,
     // width: process.env.NODE_ENV === "development" ? 1000 : 300,
     // height: process.env.NODE_ENV === "development" ? 1000 : 500,
     resizable: false,
