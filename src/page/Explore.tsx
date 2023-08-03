@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { SiGoogleearth, SiGooglemaps } from "react-icons/si";
+import { BiSearchAlt } from "react-icons/bi";
 import Spinner from "../component/Spinner";
 
 export default function Explore() {
@@ -24,9 +25,21 @@ export default function Explore() {
     <Layout>
       <div className="flex min-h-full max-w-screen-sm flex-col gap-1 bg-gray-100 p-5 text-gray-700">
         <h1 className="line-clamp-2 text-3xl">{earthView?.name}</h1>
+        <button
+          hidden={!earthView}
+          title="Search in Google"
+          className="absolute right-4 top-4 text-gray-500 duration-150 ease-in-out hover:text-gray-700"
+          onClick={() => {
+            window.electron.openUrl(
+              `https://www.google.com/search?q=${encodeURI(earthView?.name)}`,
+            );
+          }}
+        >
+          <BiSearchAlt />
+        </button>
 
         <div
-          className={`line-clamp-4 font-inter text-sm ${
+          className={`mb-0.5 line-clamp-4 font-inter text-sm ${
             wiki
               ? "cursor-pointer rounded-md duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-900"
               : ""
