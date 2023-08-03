@@ -24,7 +24,12 @@ export default function Explore() {
   return (
     <Layout requiresNetwork>
       <div className="flex min-h-full max-w-screen-sm flex-col gap-1 p-5 text-gray-700">
-        <h1 className="line-clamp-2 text-3xl">{earthView?.name}</h1>
+        <h1 className="line-clamp-1 text-3xl">
+          {earthView?.region ? earthView?.region : earthView?.country}
+        </h1>
+        <div className="font-bold">
+          {earthView?.region ? earthView?.country : ""}
+        </div>
         <button
           hidden={!earthView}
           title="Search in Google"
@@ -39,9 +44,9 @@ export default function Explore() {
         </button>
 
         <div
-          className={`mb-0.5 line-clamp-4 font-inter text-sm ${
+          className={`mb-0.5 line-clamp-4 font-inter text-sm text-gray-600 ${
             wiki
-              ? "cursor-pointer rounded-md duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-900"
+              ? "cursor-pointer rounded-md duration-150 ease-in-out hover:bg-gray-200 hover:text-gray-800"
               : ""
           }`}
           title="Open in Wikipedia"
