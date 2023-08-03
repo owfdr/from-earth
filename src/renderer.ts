@@ -15,23 +15,25 @@ declare global {
 
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
-const router = createHashRouter([
-  {
-    path: "/",
-    element: React.createElement(Explore),
-  },
-  {
-    path: "/main_window",
-    loader: () => redirect("/"),
-  },
-  {
-    path: "/settings",
-    element: React.createElement(Settings),
-  },
-  {
-    path: "/Info",
-    element: React.createElement(Info),
-  },
-]);
-
-root.render(React.createElement(RouterProvider, { router }));
+root.render(
+  React.createElement(RouterProvider, {
+    router: createHashRouter([
+      {
+        path: "/",
+        element: React.createElement(Explore),
+      },
+      {
+        path: "/main_window",
+        loader: () => redirect("/"),
+      },
+      {
+        path: "/settings",
+        element: React.createElement(Settings),
+      },
+      {
+        path: "/Info",
+        element: React.createElement(Info),
+      },
+    ]),
+  }),
+);

@@ -22,8 +22,8 @@ export default function Explore() {
   }, []);
 
   return (
-    <Layout>
-      <div className="flex min-h-full max-w-screen-sm flex-col gap-1 bg-gray-100 p-5 text-gray-700">
+    <Layout requiresNetwork>
+      <div className="flex min-h-full max-w-screen-sm flex-col gap-1 p-5 text-gray-700">
         <h1 className="line-clamp-2 text-3xl">{earthView?.name}</h1>
         <button
           hidden={!earthView}

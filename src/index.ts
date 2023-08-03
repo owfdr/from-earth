@@ -53,7 +53,6 @@ ipcMain.handle("openUrl", async (_, url) => {
 
 // Get random earth view
 ipcMain.handle("newView", async () => {
-  // TODO: check internet connection
   // TODO: logic isolation
   const earthView = earthViews[Math.floor(Math.random() * earthViews.length)];
 
@@ -70,7 +69,6 @@ ipcMain.handle("newView", async () => {
 });
 
 ipcMain.handle("setWallpaper", async (_, id) => {
-  // TODO: check internet connection
   // TODO: logic isolation
   const earthView = earthViews.find((earthView) => earthView.id === id);
 
