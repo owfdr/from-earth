@@ -26,7 +26,7 @@ export default function Explore() {
         <h1 className="text-3xl line-clamp-2">{earthView?.name}</h1>
 
         <div
-          className={`text-sm line-clamp-4 ${
+          className={`text-sm line-clamp-4 font-inter ${
             wiki
               ? "cursor-pointer rounded-md hover:bg-gray-200 hover:text-gray-900 duration-150 ease-in-out"
               : ""
