@@ -9,12 +9,14 @@ import Layout from "../layout/Layout";
 export default function Explore() {
   const [earthView, setEarthView] = useState<EarthView | null>(null);
   const [wiki, setWiki] = useState<string | null>(null);
-  const [processing, setProcessing] = useState<boolean>(false);
+  const [processing, setProcessing] = useState(false);
+  const [contentReady, setContentReady] = useState(false);
 
   const fetchData = () => {
     window.electron.newView().then(({ earthView, wiki }) => {
       setEarthView(earthView);
       setWiki(wiki);
+      setTimeout(() => setContentReady(true), 200);
     });
   };
 
@@ -23,7 +25,7 @@ export default function Explore() {
   }, []);
 
   return (
-    <Layout requiresNetwork loadingAnimation={!earthView}>
+    <Layout requiresNetwork loadingAnimation={!contentReady}>
       <div className="flex min-h-full max-w-screen-sm flex-col gap-1 p-5 text-gray-700">
         <h1 className="line-clamp-1 text-3xl">
           {earthView?.region ? earthView?.region : earthView?.country}
