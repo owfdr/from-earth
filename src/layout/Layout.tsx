@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 import TabBar from "../component/TabBar";
+import Loading from "../page/Loading";
 import NetworkIssue from "../page/NetworkIssue";
 
 type Props = {
   children: React.ReactNode;
   requiresNetwork?: boolean;
+  loadingAnimation?: boolean;
 };
 
-export default function Layout({ children, requiresNetwork }: Props) {
+export default function Layout(props: Props) {
+  const { children, requiresNetwork, loadingAnimation } = props;
   const [isOffline, setIsOffline] = useState(false);
 
   useEffect(() => {
@@ -21,15 +24,21 @@ export default function Layout({ children, requiresNetwork }: Props) {
     });
   }, []);
 
+  const contentSwitch = () => {
+    if (isOffline && requiresNetwork) {
+      return <NetworkIssue />;
+    } else if (loadingAnimation) {
+      return <Loading />;
+    } else {
+      return <>{children}</>;
+    }
+  };
+
   return (
     <div className="flex h-screen max-h-screen flex-col">
-      {isOffline && requiresNetwork ? (
-        <div className="grow overflow-scroll bg-gray-100">
-          <NetworkIssue />
-        </div>
-      ) : (
-        <div className="grow overflow-scroll bg-gray-100">{children}</div>
-      )}
+      <div className="grow overflow-scroll bg-gray-100 transition duration-300">
+        {contentSwitch()}
+      </div>
       <TabBar />
     </div>
   );

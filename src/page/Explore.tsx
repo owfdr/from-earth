@@ -23,7 +23,7 @@ export default function Explore() {
   }, []);
 
   return (
-    <Layout requiresNetwork>
+    <Layout requiresNetwork loadingAnimation={!earthView}>
       <div className="flex min-h-full max-w-screen-sm flex-col gap-1 p-5 text-gray-700">
         <h1 className="line-clamp-1 text-3xl">
           {earthView?.region ? earthView?.region : earthView?.country}
