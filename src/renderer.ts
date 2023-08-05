@@ -1,11 +1,12 @@
-import { createRoot } from "react-dom/client";
-import { ElectronHandler } from "./preload";
-import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
 import React from "react";
-import Explore from "./page/Explore";
-import Settings from "./page/Settings";
-import Info from "./page/Info";
+import { createRoot } from "react-dom/client";
+import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
+
 import "./index.css";
+import Explore from "./page/Explore";
+import Info from "./page/Info";
+import Settings from "./page/Settings";
+import { ElectronHandler } from "./preload";
 
 declare global {
   interface Window {

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../layout/Layout";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { SiGoogleearth, SiGooglemaps } from "react-icons/si";
+import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
+import { SiGoogleearth, SiGooglemaps } from "react-icons/si";
+
 import Spinner from "../component/Spinner";
+import Layout from "../layout/Layout";
 
 export default function Explore() {
   const [earthView, setEarthView] = useState<EarthView | null>(null);

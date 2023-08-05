@@ -1,10 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
 import {
-  GlobeAsiaAustraliaIcon,
   Cog6ToothIcon,
+  GlobeAsiaAustraliaIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const routes = [
   {

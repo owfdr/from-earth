@@ -1,9 +1,10 @@
 import { app, dialog, ipcMain, shell } from "electron";
-import { menubar } from "menubar";
 import fs from "fs";
+import { menubar } from "menubar";
 import path from "path";
-import earthViews from "./data/earth-views.json";
 import { setWallpaper } from "wallpaper";
+
+import earthViews from "./data/earth-views.json";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
