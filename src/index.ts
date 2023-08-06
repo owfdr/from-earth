@@ -1,4 +1,5 @@
 import { app, dialog, ipcMain, shell } from "electron";
+import ElectronStore from "electron-store";
 import fs from "fs";
 import { menubar } from "menubar";
 import path from "path";
@@ -9,26 +10,33 @@ import earthViews from "./data/earth-views.json";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
+export type UserSettings = {
+  launchAtLogin: boolean;
+  theme: "light" | "dark" | "system";
+};
+
+export const store = new ElectronStore({
+  defaults: {
+    userSettings: {
+      launchAtLogin: false,
+      theme: "system",
+    },
+  },
+});
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
 // open the app at login
-if (process.env.NODE_ENV === "production") {
-  app.setLoginItemSettings({
-    openAtLogin: true,
-    openAsHidden: true,
-  });
-}
-
 const mb = menubar({
   browserWindow: {
-    y: process.platform === "darwin" ? 30 : undefined,
-    width: 320,
-    height: 570,
-    // width: process.env.NODE_ENV === "development" ? 1000 : 300,
-    // height: process.env.NODE_ENV === "development" ? 1000 : 500,
+    y: process.platform === "darwin" ? 30 : 0,
+    // width: 320,
+    // height: 570,
+    width: process.env.NODE_ENV === "development" ? 1000 : 320,
+    height: process.env.NODE_ENV === "development" ? 1000 : 570,
     resizable: false,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
@@ -40,10 +48,17 @@ const mb = menubar({
   index: MAIN_WINDOW_WEBPACK_ENTRY,
 });
 
+if (process.env.NODE_ENV === "production") {
+  mb.app.setLoginItemSettings({
+    openAtLogin: store.get("userSettings").launchAtLogin,
+    openAsHidden: true,
+  });
+}
+
 mb.on("ready", async () => {
-  // if (process.env.NODE_ENV === "development") {
-  //   mb.window.webContents.openDevTools();
-  // }
+  if (process.env.NODE_ENV === "development") {
+    mb.window.webContents.openDevTools();
+  }
   // TODO: automatic file cleanup
 });
 
@@ -92,4 +107,22 @@ ipcMain.handle("showMessageBox", (_, options: Electron.MessageBoxOptions) => {
 
 ipcMain.handle("getInfo", async (_, id) => {
   // TODO
+});
+
+ipcMain.handle("getUserSettings", async () => {
+  return store.get("userSettings") as UserSettings;
+});
+
+ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
+  store.set("userSettings.launchAtLogin", launchAtLogin);
+  app.setLoginItemSettings({
+    openAtLogin: launchAtLogin,
+    openAsHidden: true,
+  });
+});
+
+ipcMain.handle("quitApp", () => {
+  setTimeout(() => {
+    mb.app.quit();
+  }, 200);
 });

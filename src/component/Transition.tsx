@@ -3,14 +3,14 @@ import React from "react";
 
 type Props = {
   children: React.ReactNode;
-  key: string;
+  name: string;
 };
 
-export default function Transition({ children, key }: Props) {
+export default function Transition({ children, name }: Props) {
   return (
     <motion.div
       className="h-full"
-      key={key}
+      key={name}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

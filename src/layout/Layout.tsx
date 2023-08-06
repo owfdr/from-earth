@@ -2,9 +2,9 @@ import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 import TabBar from "../component/TabBar";
+import Transition from "../component/Transition";
 import Loading from "../page/Loading";
 import NetworkIssue from "../page/NetworkIssue";
-import Transition from "../component/Transition";
 
 type Props = {
   children: React.ReactNode;
@@ -29,18 +29,18 @@ export default function Layout(props: Props) {
   const contentSwitch = () => {
     if (isOffline && requiresNetwork) {
       return (
-        <Transition key="network-issue">
+        <Transition name="network-issue">
           <NetworkIssue />
         </Transition>
       );
     } else if (loadingAnimation) {
       return (
-        <Transition key="loading">
+        <Transition name="loading">
           <Loading />
         </Transition>
       );
     } else {
-      return <Transition key="children">{children}</Transition>;
+      return <Transition name="children">{children}</Transition>;
     }
   };
 
