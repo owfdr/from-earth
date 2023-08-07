@@ -7,7 +7,7 @@ import Loading from "../page/Loading";
 import NetworkIssue from "../page/NetworkIssue";
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   requiresNetwork?: boolean;
   loadingAnimation?: boolean;
 };

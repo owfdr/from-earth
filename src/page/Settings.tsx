@@ -5,12 +5,18 @@ import Layout from "../layout/Layout";
 
 export default function Settings() {
   const [launchAtLogin, setLaunchAtLogin] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     window.electron.getUserSettings().then((settings) => {
       setLaunchAtLogin(settings.launchAtLogin);
+      setReady(true);
     });
   }, []);
+
+  if (!ready) {
+    return <Layout />;
+  }
 
   return (
     <Layout>

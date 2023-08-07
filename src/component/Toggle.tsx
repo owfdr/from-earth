@@ -1,5 +1,5 @@
 import { Switch } from "@headlessui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   value: boolean;
@@ -8,6 +8,10 @@ type Props = {
 
 export default function Toggle({ value, onChange }: Props) {
   const [enabled, setEnabled] = useState(value);
+
+  useEffect(() => {
+    setEnabled(value);
+  }, [value]);
 
   const classNames = (...classes: (string | boolean)[]) =>
     classes.filter(Boolean).join(" ");
