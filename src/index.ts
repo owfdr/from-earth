@@ -5,6 +5,9 @@ import { menubar } from "menubar";
 import path from "path";
 import { setWallpaper } from "wallpaper";
 
+import "./assets/iconTemplate.png";
+import "./assets/iconTemplate@2x.png";
+import "./assets/iconTemplate@3x.png";
 import earthViews from "./data/earth-views.json";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -32,7 +35,7 @@ if (require("electron-squirrel-startup")) {
 // open the app at login
 const mb = menubar({
   browserWindow: {
-    y: process.platform === "darwin" ? 30 : 0,
+    y: process.platform === "darwin" ? 30 : undefined,
     // width: 320,
     // height: 570,
     width: process.env.NODE_ENV === "development" ? 1000 : 320,
@@ -44,7 +47,7 @@ const mb = menubar({
   },
   preloadWindow: true,
   showDockIcon: false,
-  icon: "assets/iconTemplate.png",
+  icon: path.join(__dirname, "assets", "iconTemplate.png"),
   index: MAIN_WINDOW_WEBPACK_ENTRY,
 });
 
