@@ -25,7 +25,7 @@ export default function Explore() {
       setEarthView(earthView);
       setWiki(wiki);
       setIsFavorite(isFavorite);
-      setTimeout(() => setContentReady(true), 200);
+      setContentReady(true);
     });
   };
 
@@ -34,7 +34,7 @@ export default function Explore() {
       setEarthView(earthView);
       setWiki(wiki);
       setIsFavorite(isFavorite);
-      setTimeout(() => setContentReady(true), 200);
+      setContentReady(true);
     });
   };
 

@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../layout/Layout";
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState<EarthView[] | null>(null);
-  const [processing, setProcessing] = useState(true);
+  const [favorites, setFavorites] = useState<EarthView[]>([]);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -14,13 +13,8 @@ export default function Favorites() {
   useEffect(() => {
     window.electron.getFavorites().then((favorites) => {
       setFavorites(favorites);
-      setProcessing(false);
     });
   });
-
-  if (processing) {
-    return <Layout requiresNetwork loadingAnimation />;
-  }
 
   return (
     <Layout>
