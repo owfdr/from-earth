@@ -52,7 +52,7 @@ const mb = menubar({
   browserWindow: {
     y: process.platform === "darwin" ? 30 : undefined,
     width: process.env.NODE_ENV === "development" ? 1000 : 350,
-    height: process.env.NODE_ENV === "development" ? 1000 : 600,
+    height: 600,
     resizable: false,
     alwaysOnTop: process.env.NODE_ENV === "development" ? true : false,
     backgroundColor:
@@ -78,6 +78,16 @@ if (process.env.NODE_ENV === "production") {
 mb.on("ready", async () => {
   if (process.env.NODE_ENV === "development") {
     mb.window.webContents.openDevTools();
+  }
+
+  if (process.platform === "win32") {
+    mb.window.webContents.on("did-finish-load", () => {
+      mb.window.webContents.insertCSS(`
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      `);
+    });
   }
   // TODO: automatic file cleanup
 });
