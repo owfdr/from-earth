@@ -21,7 +21,7 @@ export const rules: Rules = [
     },
   },
   {
-    test: /\.(png|jpe?g|gif)$/i,
+    test: /\.(ico|png|jpe?g|gif)$/i,
     use: [
       {
         loader: "file-loader",

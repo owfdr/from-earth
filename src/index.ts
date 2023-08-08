@@ -5,6 +5,10 @@ import { menubar } from "menubar";
 import path from "path";
 import { setWallpaper } from "wallpaper";
 
+import "./assets/iconDark.ico";
+import "./assets/iconDark.png";
+import "./assets/iconLight.ico";
+import "./assets/iconLight.png";
 import "./assets/iconTemplate.png";
 import "./assets/iconTemplate@2x.png";
 import "./assets/iconTemplate@3x.png";
@@ -47,6 +51,22 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+const findBestIcon = () => {
+  if (process.platform === "darwin") {
+    return path.join(__dirname, "assets", "iconTemplate.png");
+  }
+
+  if (process.platform === "win32") {
+    return path.join(__dirname, "assets", "iconDark.ico");
+  }
+
+  return path.join(
+    __dirname,
+    "assets",
+    nativeTheme.shouldUseDarkColors ? "iconDark.png" : "iconLight.png",
+  );
+};
+
 // open the app at login
 const mb = menubar({
   browserWindow: {
@@ -64,7 +84,7 @@ const mb = menubar({
   tooltip: "Earth View",
   preloadWindow: process.env.NODE_ENV === "development" ? true : false,
   showDockIcon: false,
-  icon: path.join(__dirname, "assets", "iconTemplate.png"),
+  icon: findBestIcon(),
   index: MAIN_WINDOW_WEBPACK_ENTRY,
 });
 
