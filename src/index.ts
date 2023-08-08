@@ -62,7 +62,7 @@ const mb = menubar({
     },
   },
   tooltip: "Earth View",
-  preloadWindow: true,
+  preloadWindow: process.env.NODE_ENV === "development" ? true : false,
   showDockIcon: false,
   icon: path.join(__dirname, "assets", "iconTemplate.png"),
   index: MAIN_WINDOW_WEBPACK_ENTRY,
@@ -80,6 +80,10 @@ mb.on("ready", async () => {
     mb.window.webContents.openDevTools();
   }
   // TODO: automatic file cleanup
+});
+
+mb.on("after-hide", async () => {
+  mb.app.dock.hide();
 });
 
 nativeTheme.on("updated", () => {
