@@ -1,7 +1,7 @@
 import {
   Cog6ToothIcon,
   GlobeAsiaAustraliaIcon,
-  InformationCircleIcon,
+  HeartIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -13,14 +13,14 @@ const routes = [
     icon: GlobeAsiaAustraliaIcon,
   },
   {
+    name: "Favorites",
+    path: "/favorites",
+    icon: HeartIcon,
+  },
+  {
     name: "Settings",
     path: "/settings",
     icon: Cog6ToothIcon,
-  },
-  {
-    name: "Info",
-    path: "/info",
-    icon: InformationCircleIcon,
   },
 ];
 

@@ -4,7 +4,7 @@ import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
 
 import "./index.css";
 import Explore from "./page/Explore";
-import Info from "./page/Info";
+import Favorites from "./page/Favorites";
 import Settings from "./page/Settings";
 import { ElectronHandler } from "./preload";
 
@@ -36,8 +36,8 @@ root.render(
         element: React.createElement(Settings),
       },
       {
-        path: "/Info",
-        element: React.createElement(Info),
+        path: "/favorites",
+        element: React.createElement(Favorites),
       },
     ]),
   }),

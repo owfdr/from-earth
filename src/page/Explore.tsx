@@ -1,4 +1,8 @@
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowPathIcon,
+  HeartIcon as HeartIconOutline,
+} from "@heroicons/react/24/outline";
+import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { SiGoogleearth, SiGooglemaps } from "react-icons/si";
@@ -9,13 +13,15 @@ import Layout from "../layout/Layout";
 export default function Explore() {
   const [earthView, setEarthView] = useState<EarthView | null>(null);
   const [wiki, setWiki] = useState<string | null>(null);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [contentReady, setContentReady] = useState(false);
 
   const fetchData = () => {
-    window.electron.newView().then(({ earthView, wiki }) => {
+    window.electron.newView().then(({ earthView, wiki, isFavorite }) => {
       setEarthView(earthView);
       setWiki(wiki);
+      setIsFavorite(isFavorite);
       setTimeout(() => setContentReady(true), 200);
     });
   };
@@ -135,6 +141,21 @@ export default function Explore() {
           >
             {processing ? <Spinner /> : "Set as Wallpaper"}
           </button>
+
+          <button
+            className="w-full flex-1 rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-gray-200"
+            onClick={() => {
+              window.electron.addFavorite(earthView);
+              setIsFavorite((prev) => !prev);
+            }}
+          >
+            {isFavorite ? (
+              <HeartIconSolid className="h-5 w-5" />
+            ) : (
+              <HeartIconOutline className="h-5 w-5" />
+            )}
+          </button>
+
           <button
             className="w-full flex-1 rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-gray-200"
             onClick={() => {

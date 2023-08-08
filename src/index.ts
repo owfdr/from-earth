@@ -18,12 +18,18 @@ export type UserSettings = {
   theme: "light" | "dark";
 };
 
-export const store = new ElectronStore({
+export type Schema = {
+  userSettings: UserSettings;
+  favorites: EarthView[];
+};
+
+export const store = new ElectronStore<Schema>({
   defaults: {
     userSettings: {
       launchAtLogin: false,
       theme: "light",
     },
+    favorites: [],
   },
 });
 
@@ -41,9 +47,10 @@ if (require("electron-squirrel-startup")) {
 const mb = menubar({
   browserWindow: {
     y: process.platform === "darwin" ? 30 : undefined,
-    width: process.env.NODE_ENV === "development" ? 1000 : 320,
-    height: process.env.NODE_ENV === "development" ? 1000 : 570,
+    width: process.env.NODE_ENV === "development" ? 1000 : 350,
+    height: process.env.NODE_ENV === "development" ? 1000 : 600,
     resizable: false,
+    alwaysOnTop: process.env.NODE_ENV === "development" ? true : false,
     backgroundColor:
       store.get("userSettings").theme === "dark" ? "#000" : "#fff",
     webPreferences: {
@@ -97,7 +104,11 @@ ipcMain.handle("newView", async () => {
   const wiki =
     wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
 
-  return { earthView, wiki };
+  const isFavorite = store
+    .get("favorites")
+    .some((favorite) => favorite.id === earthView.id);
+
+  return { earthView, wiki, isFavorite };
 });
 
 ipcMain.handle("setWallpaper", async (_, id) => {
@@ -140,6 +151,26 @@ ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
 ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
   store.set("userSettings.theme", theme);
   mb.window.webContents.send("themeChanged", theme);
+});
+
+ipcMain.handle("getFavorites", async () => {
+  return store.get("favorites") as EarthView[];
+});
+
+ipcMain.handle("addFavorite", async (_, earthView: EarthView) => {
+  const favorites = store.get("favorites") as EarthView[];
+
+  if (!favorites.some((favorite) => favorite.id === earthView.id)) {
+    favorites.push(earthView);
+    store.set("favorites", favorites);
+  }
+});
+
+ipcMain.handle("removeFavorite", async (_, id: string) => {
+  const favorites = store.get("favorites") as EarthView[];
+
+  const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+  store.set("favorites", newFavorites);
 });
 
 ipcMain.handle("quitApp", () => {
