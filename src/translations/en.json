@@ -1,0 +1,22 @@
+{
+    "search-in-google": "Search in Google",
+    "open-in-wikipedia": "Open in Wikipedia",
+    "wikipedia-not-found": "Wikipedia not found.",
+    "attribution": "Attribution",
+    "lat": "LAT",
+    "long": "LONG",
+    "open-in-google-earth": "Open in Google Earth",
+    "open-in-google-maps": "Open in Google Maps",
+    "set-as-wallpaper": "Set as Wallpaper",
+    "toggle-favorite": "Toggle Favorite",
+    "get-new-image": "Get New Image",
+    "favorites": "Favorites",
+    "no-favorites-yet": "No Favorites yet.",
+    "remove-from-favorites": "Remove from Favorites",
+    "no-internet-connection": "No Internet Connection",
+    "this-app-requires-an-internet...": "This app requires an internet connection to function properly. Please check your connection and try again.",
+    "settings": "Settings",
+    "launch-at-login": "Launch at login",
+    "dark-mode": "Dark Mode",
+    "quit-app": "Quit App"
+}

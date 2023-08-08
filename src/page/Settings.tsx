@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Toggle from "../component/Toggle";
 import Layout from "../layout/Layout";
@@ -7,6 +8,8 @@ export default function Settings() {
   const [launchAtLogin, setLaunchAtLogin] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [ready, setReady] = useState(false);
+
+  const { t } = useTranslation();
 
   const refreshData = () => {
     window.electron.getUserSettings().then((settings) => {
@@ -31,9 +34,9 @@ export default function Settings() {
   return (
     <Layout>
       <div className="flex min-h-full max-w-screen-sm flex-col p-5 text-gray-700 dark:text-gray-300">
-        <h1 className="mb-5 line-clamp-1 text-3xl">Settings</h1>
+        <h1 className="mb-5 line-clamp-1 text-3xl">{t("settings")}</h1>
         <div className="flex justify-between rounded-lg rounded-b-none border border-b-0 bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
-          <h2 className="tracking-tight">Launch at login</h2>
+          <h2 className="tracking-tight">{t("launch-at-login")}</h2>
           <Toggle
             value={launchAtLogin}
             onChange={(enabled) => {
@@ -42,7 +45,7 @@ export default function Settings() {
           />
         </div>
         <div className="flex justify-between rounded-lg rounded-t-none border bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
-          <h2 className="tracking-tight">Dark Mode</h2>
+          <h2 className="tracking-tight">{t("dark-mode")}</h2>
           <Toggle
             value={isDarkTheme}
             onChange={(enabled) => {
@@ -57,7 +60,7 @@ export default function Settings() {
               window.electron.quitApp();
             }}
           >
-            Quit App
+            {t("quit-app")}
           </button>
         </div>
       </div>

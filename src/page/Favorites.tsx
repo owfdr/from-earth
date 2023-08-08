@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "../layout/Layout";
@@ -7,6 +8,7 @@ export default function Favorites() {
   const [favorites, setFavorites] = useState<EarthView[] | null>(null);
   const [processing, setProcessing] = useState(true);
 
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,10 +25,10 @@ export default function Favorites() {
   return (
     <Layout>
       <div className="flex min-h-full max-w-screen-sm flex-col p-5 text-gray-700 dark:text-gray-300">
-        <h1 className="line-clamp-1 text-3xl">Favorites</h1>
+        <h1 className="line-clamp-1 text-3xl">{t("favorites")}</h1>
         {favorites.length === 0 ? (
           <p className="mt-5 text-gray-500 dark:text-gray-500">
-            No Favorites yet.
+            {t("no-favorites-yet")}
           </p>
         ) : (
           <div className="mt-5 flex flex-col divide-y divide-gray-100 overflow-hidden rounded-md border bg-gray-50 dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-800">
@@ -53,7 +55,7 @@ export default function Favorites() {
                   </div>
                 </div>
                 <button
-                  title="Remove from Favorites"
+                  title={t("remove-from-favorites")}
                   className="z-10 ml-auto text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                   onClick={(event) => {
                     event.stopPropagation();

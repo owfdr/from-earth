@@ -98,7 +98,8 @@ ipcMain.handle("newView", async () => {
   const earthView = earthViews[Math.floor(Math.random() * earthViews.length)];
 
   const keyword = earthView.region ? earthView.region : earthView.country;
-  const query = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
+  const locale = app.getLocale().split("-")[0];
+  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
     keyword,
   )}`;
   const wikiResponse = await fetch(query);
@@ -177,7 +178,8 @@ ipcMain.handle("getCurrent", async () => {
   const earthView = store.get("current");
 
   const keyword = earthView.region ? earthView.region : earthView.country;
-  const query = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
+  const locale = app.getLocale().split("-")[0];
+  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
     keyword,
   )}`;
   const wikiResponse = await fetch(query);
