@@ -21,7 +21,7 @@ export type Preferences = {
 export type StoreType = {
   userSettings: Preferences;
   favorites: (EarthView & { createdAt: string })[];
-  current: EarthView | null;
+  current: EarthView;
 };
 
 export const store = new ElectronStore<StoreType>({
@@ -31,7 +31,9 @@ export const store = new ElectronStore<StoreType>({
       theme: "light",
     },
     favorites: [],
-    current: null,
+    current: earthViews[
+      Math.floor(Math.random() * earthViews.length)
+    ] as EarthView,
   },
 });
 
