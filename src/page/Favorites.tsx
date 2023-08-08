@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Layout from "../layout/Layout";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<EarthView[] | null>(null);
   const [processing, setProcessing] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.electron.getFavorites().then((favorites) => {
@@ -30,7 +33,10 @@ export default function Favorites() {
             {favorites?.map((favorite) => (
               <div
                 key={favorite.id}
-                className="flex cursor-pointer items-center gap-3 p-5 transition duration-150 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="flex cursor-pointer items-center gap-3 p-3 transition duration-150 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700"
+                onClick={() => {
+                  //
+                }}
               >
                 <img src={favorite.thumbUrl} className="w-24 rounded" />
                 <div className="flex flex-col overflow-hidden">
@@ -39,6 +45,9 @@ export default function Favorites() {
                   </div>
                   <div className="truncate text-sm tracking-tight text-gray-600 dark:text-gray-400">
                     {favorite.region ? favorite.country : ""}
+                  </div>
+                  <div className="mt-1 truncate text-xs tracking-tight text-gray-500 dark:text-gray-500">
+                    {favorite.attribution}
                   </div>
                 </div>
                 <button
