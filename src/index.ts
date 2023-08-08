@@ -20,7 +20,7 @@ export type Preferences = {
 
 export type StoreType = {
   userSettings: Preferences;
-  favorites: EarthView[];
+  favorites: (EarthView & { createdAt: string })[];
   current: EarthView | null;
 };
 
@@ -137,7 +137,7 @@ ipcMain.handle("showMessageBox", (_, options: Electron.MessageBoxOptions) => {
 });
 
 ipcMain.handle("getUserSettings", async () => {
-  return store.get("userSettings") as Preferences;
+  return store.get("userSettings");
 });
 
 ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
@@ -154,20 +154,20 @@ ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
 });
 
 ipcMain.handle("getFavorites", async () => {
-  return store.get("favorites") as EarthView[];
+  return store.get("favorites");
 });
 
 ipcMain.handle("addFavorite", async (_, earthView: EarthView) => {
-  const favorites = store.get("favorites") as EarthView[];
+  const favorites = store.get("favorites");
 
   if (!favorites.some((favorite) => favorite.id === earthView.id)) {
-    favorites.push(earthView);
+    favorites.push({ ...earthView, createdAt: new Date().toISOString() });
     store.set("favorites", favorites);
   }
 });
 
 ipcMain.handle("removeFavorite", async (_, id: string) => {
-  const favorites = store.get("favorites") as EarthView[];
+  const favorites = store.get("favorites");
 
   const newFavorites = favorites.filter((favorite) => favorite.id !== id);
   store.set("favorites", newFavorites);
