@@ -26,15 +26,15 @@ const routes = [
 
 export default function TabBar() {
   return (
-    <div className="flex border-t bg-gray-100 text-center text-sm font-medium text-gray-500 dark:text-gray-400">
+    <div className="flex border-t bg-gray-100 text-center text-sm font-medium text-gray-500 dark:border-gray-700 dark:text-gray-400">
       {routes.map((route) => (
         <NavLink
           key={route.name}
           to={route.path}
           className={({ isActive }) =>
             isActive
-              ? "inline-block w-full bg-white p-4 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
-              : "inline-block w-full bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+              ? "inline-block w-full bg-white p-4 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+              : "inline-block w-full bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-100"
           }
         >
           {React.createElement(route.icon, {

@@ -15,9 +15,15 @@ const electronHandler = {
   getUserSettings: () => ipcRenderer.invoke("getUserSettings"),
   setLaunchAtLogin: (launchAtLogin: boolean) =>
     ipcRenderer.invoke("setLaunchAtLogin", launchAtLogin),
+  setTheme: (theme: "light" | "dark") => ipcRenderer.invoke("setTheme", theme),
   quitApp: () => ipcRenderer.invoke("quitApp"),
 };
 
 contextBridge.exposeInMainWorld("electron", electronHandler);
 
 export type ElectronHandler = typeof electronHandler;
+
+ipcRenderer.on("themeChanged", (_, theme: "light" | "dark") => {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  window.dispatchEvent(new Event("themeChanged"));
+});

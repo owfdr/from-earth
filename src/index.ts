@@ -1,4 +1,4 @@
-import { app, dialog, ipcMain, shell } from "electron";
+import { app, dialog, ipcMain, nativeTheme, shell } from "electron";
 import ElectronStore from "electron-store";
 import fs from "fs";
 import { menubar } from "menubar";
@@ -15,17 +15,22 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 export type UserSettings = {
   launchAtLogin: boolean;
-  theme: "light" | "dark" | "system";
+  theme: "light" | "dark";
 };
 
 export const store = new ElectronStore({
   defaults: {
     userSettings: {
       launchAtLogin: false,
-      theme: "system",
+      theme: "light",
     },
   },
 });
+
+store.set(
+  "userSettings.theme",
+  nativeTheme.shouldUseDarkColors ? "dark" : "light",
+);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -36,15 +41,16 @@ if (require("electron-squirrel-startup")) {
 const mb = menubar({
   browserWindow: {
     y: process.platform === "darwin" ? 30 : undefined,
-    // width: 320,
-    // height: 570,
     width: process.env.NODE_ENV === "development" ? 1000 : 320,
     height: process.env.NODE_ENV === "development" ? 1000 : 570,
     resizable: false,
+    backgroundColor:
+      store.get("userSettings").theme === "dark" ? "#000" : "#fff",
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   },
+  tooltip: "Earth View",
   preloadWindow: true,
   showDockIcon: false,
   icon: path.join(__dirname, "assets", "iconTemplate.png"),
@@ -63,6 +69,13 @@ mb.on("ready", async () => {
     mb.window.webContents.openDevTools();
   }
   // TODO: automatic file cleanup
+});
+
+nativeTheme.on("updated", () => {
+  const theme = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+
+  store.set("userSettings.theme", theme);
+  mb.window.webContents.send("themeChanged", theme);
 });
 
 // Open url in user's default browser
@@ -122,6 +135,11 @@ ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
     openAtLogin: launchAtLogin,
     openAsHidden: true,
   });
+});
+
+ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
+  store.set("userSettings.theme", theme);
+  mb.window.webContents.send("themeChanged", theme);
 });
 
 ipcMain.handle("quitApp", () => {

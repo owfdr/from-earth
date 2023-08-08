@@ -46,7 +46,7 @@ export default function Layout(props: Props) {
 
   return (
     <div className="flex h-screen max-h-screen flex-col">
-      <div className="grow overflow-scroll bg-gray-100 transition duration-300">
+      <div className="grow overflow-scroll bg-gray-100 transition duration-300 dark:bg-gray-900">
         <AnimatePresence>{contentSwitch()}</AnimatePresence>
       </div>
       <TabBar />

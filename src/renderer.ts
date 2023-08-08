@@ -14,6 +14,10 @@ declare global {
   }
 }
 
+window.electron.getUserSettings().then(({ theme }) => {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+});
+
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 root.render(
