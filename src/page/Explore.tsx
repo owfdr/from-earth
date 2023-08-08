@@ -17,7 +17,16 @@ export default function Explore() {
   const [processing, setProcessing] = useState(false);
   const [contentReady, setContentReady] = useState(false);
 
-  const fetchData = () => {
+  const fetchCurrent = () => {
+    window.electron.getCurrent().then(({ earthView, wiki, isFavorite }) => {
+      setEarthView(earthView);
+      setWiki(wiki);
+      setIsFavorite(isFavorite);
+      setTimeout(() => setContentReady(true), 200);
+    });
+  };
+
+  const fetchNew = () => {
     window.electron.newView().then(({ earthView, wiki, isFavorite }) => {
       setEarthView(earthView);
       setWiki(wiki);
@@ -27,7 +36,7 @@ export default function Explore() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchCurrent();
   }, []);
 
   return (
@@ -145,7 +154,12 @@ export default function Explore() {
           <button
             className="w-full flex-1 rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-gray-200"
             onClick={() => {
-              window.electron.addFavorite(earthView);
+              if (isFavorite) {
+                window.electron.removeFavorite(earthView?.id);
+              } else {
+                window.electron.addFavorite(earthView);
+              }
+
               setIsFavorite((prev) => !prev);
             }}
           >
@@ -159,7 +173,7 @@ export default function Explore() {
           <button
             className="w-full flex-1 rounded-md border bg-white p-3 duration-150 ease-in-out hover:text-gray-900 hover:shadow-sm dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-gray-200"
             onClick={() => {
-              fetchData();
+              fetchNew();
             }}
           >
             <ArrowPathIcon className="h-5 w-5" />

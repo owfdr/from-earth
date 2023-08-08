@@ -35,7 +35,9 @@ export default function Favorites() {
                 key={favorite.id}
                 className="flex cursor-pointer items-center gap-3 p-3 transition duration-150 ease-in-out hover:bg-gray-200 dark:hover:bg-gray-700"
                 onClick={() => {
-                  //
+                  window.electron.setCurrent(favorite).then(() => {
+                    navigate("/");
+                  });
                 }}
               >
                 <img src={favorite.thumbUrl} className="w-24 rounded" />
@@ -54,7 +56,7 @@ export default function Favorites() {
                   title="Remove from Favorites"
                   className="z-10 ml-auto text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                   onClick={(event) => {
-                    event.preventDefault();
+                    event.stopPropagation();
                     window.electron.removeFavorite(favorite.id);
                     setFavorites(
                       favorites.filter((each) => each.id !== favorite.id),

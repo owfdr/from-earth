@@ -13,23 +13,25 @@ import earthViews from "./data/earth-views.json";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
-export type UserSettings = {
+export type Preferences = {
   launchAtLogin: boolean;
   theme: "light" | "dark";
 };
 
-export type Schema = {
-  userSettings: UserSettings;
+export type StoreType = {
+  userSettings: Preferences;
   favorites: EarthView[];
+  current: EarthView | null;
 };
 
-export const store = new ElectronStore<Schema>({
+export const store = new ElectronStore<StoreType>({
   defaults: {
     userSettings: {
       launchAtLogin: false,
       theme: "light",
     },
     favorites: [],
+    current: null,
   },
 });
 
@@ -108,6 +110,8 @@ ipcMain.handle("newView", async () => {
     .get("favorites")
     .some((favorite) => favorite.id === earthView.id);
 
+  store.set("current", earthView);
+
   return { earthView, wiki, isFavorite };
 });
 
@@ -132,12 +136,8 @@ ipcMain.handle("showMessageBox", (_, options: Electron.MessageBoxOptions) => {
   return dialog.showMessageBox(options);
 });
 
-ipcMain.handle("getInfo", async (_, id) => {
-  // TODO
-});
-
 ipcMain.handle("getUserSettings", async () => {
-  return store.get("userSettings") as UserSettings;
+  return store.get("userSettings") as Preferences;
 });
 
 ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
@@ -171,6 +171,29 @@ ipcMain.handle("removeFavorite", async (_, id: string) => {
 
   const newFavorites = favorites.filter((favorite) => favorite.id !== id);
   store.set("favorites", newFavorites);
+});
+
+ipcMain.handle("getCurrent", async () => {
+  const earthView = store.get("current");
+
+  const keyword = earthView.region ? earthView.region : earthView.country;
+  const query = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
+    keyword,
+  )}`;
+  const wikiResponse = await fetch(query);
+  const wikiJson = await wikiResponse.json();
+  const wiki =
+    wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
+
+  const isFavorite = store
+    .get("favorites")
+    .some((favorite) => favorite.id === earthView.id);
+
+  return { earthView, wiki, isFavorite };
+});
+
+ipcMain.handle("setCurrent", async (_, earthView: EarthView) => {
+  store.set("current", earthView);
 });
 
 ipcMain.handle("quitApp", () => {

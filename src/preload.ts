@@ -11,7 +11,6 @@ const electronHandler = {
   setWallpaper: (path: string) => ipcRenderer.invoke("setWallpaper", path),
   showMessageBox: (options: Electron.MessageBoxOptions) =>
     ipcRenderer.invoke("showMessageBox", options),
-  getInfo: (id: string) => ipcRenderer.invoke("getInfo", id),
   getUserSettings: () => ipcRenderer.invoke("getUserSettings"),
   setLaunchAtLogin: (launchAtLogin: boolean) =>
     ipcRenderer.invoke("setLaunchAtLogin", launchAtLogin),
@@ -20,6 +19,9 @@ const electronHandler = {
   addFavorite: (earthView: EarthView) =>
     ipcRenderer.invoke("addFavorite", earthView),
   removeFavorite: (id: string) => ipcRenderer.invoke("removeFavorite", id),
+  getCurrent: () => ipcRenderer.invoke("getCurrent"),
+  setCurrent: (earthView: EarthView) =>
+    ipcRenderer.invoke("setCurrent", earthView),
   quitApp: () => ipcRenderer.invoke("quitApp"),
 };
 
