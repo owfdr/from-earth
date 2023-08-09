@@ -12,7 +12,7 @@ import { rendererConfig } from "./webpack.renderer.config";
 const config: ForgeConfig = {
   packagerConfig: {
     name: "From Earth",
-    icon: "./assets/icon.icon",
+    icon: "./assets/icon",
     appBundleId: "com.owfdr.from-earth",
     executableName: "from-earth", // required for linux
     asar: true,
@@ -27,6 +27,11 @@ const config: ForgeConfig = {
     new MakerDeb({
       options: {
         icon: "./assets/icon.png",
+        productName: "From Earth",
+        description: "Explore beautiful places",
+        productDescription:
+          "Discover breathtaking images of our blue planet. Transform your device with captivating landscapes.",
+        categories: ["Utility"],
       },
     }),
   ],

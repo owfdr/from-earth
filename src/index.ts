@@ -1,4 +1,14 @@
-import { Menu, app, dialog, ipcMain, nativeTheme, shell } from "electron";
+import {
+  BrowserWindow,
+  BrowserWindowConstructorOptions,
+  Menu,
+  Tray,
+  app,
+  dialog,
+  ipcMain,
+  nativeTheme,
+  shell,
+} from "electron";
 import ElectronStore from "electron-store";
 import fs from "fs";
 import { menubar } from "menubar";
@@ -46,109 +56,153 @@ store.set(
   nativeTheme.shouldUseDarkColors ? "dark" : "light",
 );
 
+const defaultConfig: BrowserWindowConstructorOptions = {
+  y: process.platform === "darwin" ? 30 : undefined,
+  width: process.env.NODE_ENV === "development" ? 1000 : 350,
+  height: 600,
+  show: false,
+  frame: false,
+  resizable: false,
+  alwaysOnTop: process.env.NODE_ENV === "development" ? true : false,
+  backgroundColor: store.get("userSettings").theme === "dark" ? "#000" : "#fff",
+  webPreferences: {
+    preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+  },
+};
+
+const findBestIcon = () => {
+  let filename = "iconDark.png";
+
+  if (process.platform === "darwin") {
+    filename = "iconTemplate.png";
+  }
+
+  if (process.platform === "win32") {
+    filename = "iconDark.ico";
+  }
+
+  if (process.platform === "linux") {
+    filename = "iconDark.png";
+  }
+
+  return path.join(__dirname, "assets", filename);
+};
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+// Resolve issues found on linux
 if (process.platform === "linux") {
   app.disableHardwareAcceleration();
-}
 
-const findBestIcon = () => {
-  if (process.platform === "darwin") {
-    return path.join(__dirname, "assets", "iconTemplate.png");
-  }
-
-  if (process.platform === "win32") {
-    return path.join(__dirname, "assets", "iconDark.ico");
-  }
-
-  return path.join(__dirname, "assets", "iconDark.png");
-};
-
-// open the app at login
-const mb = menubar({
-  browserWindow: {
-    y: process.platform === "darwin" ? 30 : undefined,
-    width: process.env.NODE_ENV === "development" ? 1000 : 350,
-    height: 600,
-    resizable: false,
-    alwaysOnTop: process.env.NODE_ENV === "development" ? true : false,
-    backgroundColor:
-      store.get("userSettings").theme === "dark" ? "#000" : "#fff",
-    webPreferences: {
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-    },
-  },
-  tooltip: "Earth View",
-  preloadWindow: process.env.NODE_ENV === "development" ? true : false,
-  showDockIcon: false,
-  icon: findBestIcon(),
-  index: MAIN_WINDOW_WEBPACK_ENTRY,
-});
-
-if (process.env.NODE_ENV === "production") {
-  mb.app.setLoginItemSettings({
+  app.setLoginItemSettings({
     openAtLogin: store.get("userSettings").launchAtLogin,
     openAsHidden: true,
   });
-}
 
-mb.on("ready", async () => {
-  if (process.env.NODE_ENV === "development") {
-    mb.window.webContents.openDevTools();
-  }
+  app.whenReady().then(() => {
+    const mainWindow = new BrowserWindow(defaultConfig);
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  if (process.platform !== "darwin") {
-    mb.window.webContents.on("did-finish-load", () => {
-      mb.window.webContents.insertCSS(`
-        ::-webkit-scrollbar {
-          display: none;
-        }
-      `);
-    });
-  }
-
-  // fix for linux (ubuntu) not registering on "click" properly,
-  // which will cause menubar not responding to mouse clicks.
-  if (process.platform === "linux") {
-    mb.tray.setContextMenu(
+    const tray = new Tray(findBestIcon());
+    tray.setContextMenu(
       Menu.buildFromTemplate([
         {
           label: "Show App",
           click: () => {
-            mb.showWindow();
+            mainWindow.show();
           },
         },
         {
           label: "Hide App",
           click: () => {
-            mb.hideWindow();
+            mainWindow.hide();
           },
         },
         {
           label: "Quit",
           click: () => {
-            mb.app.quit();
+            app.quit();
           },
         },
       ]),
     );
-  }
-  // TODO: automatic file cleanup
-});
 
-mb.on("after-hide", async () => {
-  mb.app.dock.hide();
-});
+    if (process.env.NODE_ENV === "development") {
+      mainWindow.webContents.openDevTools();
+    }
 
-nativeTheme.on("updated", () => {
-  const theme = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+    mainWindow.webContents.on("did-finish-load", () => {
+      mainWindow.webContents.insertCSS(`
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      `);
+    });
 
-  store.set("userSettings.theme", theme);
-  mb.window?.webContents?.send("themeChanged", theme);
-});
+    nativeTheme.on("updated", () => {
+      const theme = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+
+      store.set("userSettings.theme", theme);
+      mainWindow.webContents.send("themeChanged", theme);
+    });
+
+    ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
+      store.set("userSettings.theme", theme);
+      mainWindow.webContents.send("themeChanged", theme);
+    });
+  });
+} else {
+  // TODO: refactor to remove menubar
+  const mb = menubar({
+    browserWindow: defaultConfig,
+    tooltip: "Earth View",
+    preloadWindow: process.env.NODE_ENV === "development" ? true : false,
+    showDockIcon: false,
+    icon: findBestIcon(),
+    index: MAIN_WINDOW_WEBPACK_ENTRY,
+  });
+
+  mb.on("ready", async () => {
+    if (process.env.NODE_ENV === "development") {
+      mb.window.webContents.openDevTools();
+    }
+
+    if (process.platform !== "darwin") {
+      mb.window.webContents.on("did-finish-load", () => {
+        mb.window.webContents.insertCSS(`
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      `);
+      });
+    }
+
+    mb.app.setLoginItemSettings({
+      openAtLogin: store.get("userSettings").launchAtLogin,
+      openAsHidden: true,
+    });
+  });
+
+  // fix for mac not hiding dock icon properly
+  mb.on("after-hide", async () => {
+    mb.app.dock.hide();
+  });
+
+  nativeTheme.on("updated", () => {
+    const theme = nativeTheme.shouldUseDarkColors ? "dark" : "light";
+
+    store.set("userSettings.theme", theme);
+    mb.window?.webContents?.send("themeChanged", theme);
+  });
+
+  ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
+    store.set("userSettings.theme", theme);
+    mb.window?.webContents?.send("themeChanged", theme);
+  });
+}
 
 // Open url in user's default browser
 ipcMain.handle("openUrl", async (_, url) => {
@@ -212,11 +266,6 @@ ipcMain.handle("setLaunchAtLogin", async (_, launchAtLogin: boolean) => {
   });
 });
 
-ipcMain.handle("setTheme", async (_, theme: "light" | "dark") => {
-  store.set("userSettings.theme", theme);
-  mb.window.webContents.send("themeChanged", theme);
-});
-
 ipcMain.handle("getFavorites", async () => {
   return store.get("favorites");
 });
@@ -263,6 +312,6 @@ ipcMain.handle("setCurrent", async (_, earthView: EarthView) => {
 
 ipcMain.handle("quitApp", () => {
   setTimeout(() => {
-    mb.app.quit();
+    app.quit();
   }, 200);
 });
