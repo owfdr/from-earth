@@ -21,6 +21,7 @@ const config: ForgeConfig = {
   makers: [
     new MakerSquirrel({
       setupIcon: "./assets/icon.ico",
+      // iconUrl: "" TODO: add iconUrl for windows
     }),
     new MakerZIP({}, ["darwin"]),
     new MakerRpm({}),
