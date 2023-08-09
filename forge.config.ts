@@ -14,6 +14,7 @@ const config: ForgeConfig = {
     name: "From Earth",
     icon: "./assets/icon.icon",
     appBundleId: "com.owfdr.from-earth",
+    executableName: "from-earth", // required for linux
     asar: true,
   },
   rebuildConfig: {},

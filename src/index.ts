@@ -1,4 +1,4 @@
-import { app, dialog, ipcMain, nativeTheme, shell } from "electron";
+import { Menu, app, dialog, ipcMain, nativeTheme, shell } from "electron";
 import ElectronStore from "electron-store";
 import fs from "fs";
 import { menubar } from "menubar";
@@ -51,6 +51,10 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+if (process.platform === "linux") {
+  app.disableHardwareAcceleration();
+}
+
 const findBestIcon = () => {
   if (process.platform === "darwin") {
     return path.join(__dirname, "assets", "iconTemplate.png");
@@ -60,11 +64,7 @@ const findBestIcon = () => {
     return path.join(__dirname, "assets", "iconDark.ico");
   }
 
-  return path.join(
-    __dirname,
-    "assets",
-    nativeTheme.shouldUseDarkColors ? "iconDark.png" : "iconLight.png",
-  );
+  return path.join(__dirname, "assets", "iconDark.png");
 };
 
 // open the app at login
@@ -100,7 +100,7 @@ mb.on("ready", async () => {
     mb.window.webContents.openDevTools();
   }
 
-  if (process.platform === "win32") {
+  if (process.platform !== "darwin") {
     mb.window.webContents.on("did-finish-load", () => {
       mb.window.webContents.insertCSS(`
         ::-webkit-scrollbar {
@@ -108,6 +108,33 @@ mb.on("ready", async () => {
         }
       `);
     });
+  }
+
+  // fix for linux (ubuntu) not registering on "click" properly,
+  // which will cause menubar not responding to mouse clicks.
+  if (process.platform === "linux") {
+    mb.tray.setContextMenu(
+      Menu.buildFromTemplate([
+        {
+          label: "Show App",
+          click: () => {
+            mb.showWindow();
+          },
+        },
+        {
+          label: "Hide App",
+          click: () => {
+            mb.hideWindow();
+          },
+        },
+        {
+          label: "Quit",
+          click: () => {
+            mb.app.quit();
+          },
+        },
+      ]),
+    );
   }
   // TODO: automatic file cleanup
 });
@@ -120,7 +147,7 @@ nativeTheme.on("updated", () => {
   const theme = nativeTheme.shouldUseDarkColors ? "dark" : "light";
 
   store.set("userSettings.theme", theme);
-  mb.window.webContents.send("themeChanged", theme);
+  mb.window?.webContents?.send("themeChanged", theme);
 });
 
 // Open url in user's default browser
