@@ -17,6 +17,7 @@
     "this-app-requires-an-internet...": "このアプリはインターネット接続が必要です。接続を確認して、もう一度お試しください。",
     "settings": "設定",
     "launch-at-login": "ログイン時に起動",
+    "not-yet-compatible": "この機能はLinuxには対応していません。",
     "dark-mode": "ダークモード",
     "quit-app": "アプリを終了する"
 }

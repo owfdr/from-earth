@@ -97,11 +97,6 @@ if (require("electron-squirrel-startup")) {
 if (process.platform === "linux") {
   app.disableHardwareAcceleration();
 
-  app.setLoginItemSettings({
-    openAtLogin: store.get("userSettings").launchAtLogin,
-    openAsHidden: true,
-  });
-
   app.whenReady().then(() => {
     const mainWindow = new BrowserWindow(defaultConfig);
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

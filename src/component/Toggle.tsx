@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 type Props = {
   value: boolean;
   onChange: (enabled: boolean) => void;
+  disabled?: boolean;
 };
 
-export default function Toggle({ value, onChange }: Props) {
+export default function Toggle({ value, onChange, disabled }: Props) {
   const [enabled, setEnabled] = useState(value);
 
   useEffect(() => {
@@ -23,10 +24,13 @@ export default function Toggle({ value, onChange }: Props) {
         setEnabled(value);
         onChange(value);
       }}
-      className={classNames(
-        enabled ? "bg-blue-400" : "bg-gray-200",
-        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
-      )}
+      disabled={disabled}
+      className={
+        classNames(
+          enabled ? "bg-blue-400" : "bg-gray-200",
+          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
+        ) + (disabled ? " opacity-40" : "")
+      }
     >
       <span className="sr-only">Use setting</span>
       <span

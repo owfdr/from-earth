@@ -17,6 +17,7 @@
     "this-app-requires-an-internet...": "This app requires an internet connection to function properly. Please check your connection and try again.",
     "settings": "Settings",
     "launch-at-login": "Launch at login",
+    "not-yet-compatible": "Feature not yet compatible with Linux",
     "dark-mode": "Dark Mode",
     "quit-app": "Quit App"
 }

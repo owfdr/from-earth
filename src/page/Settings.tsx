@@ -9,6 +9,7 @@ export default function Settings() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [ready, setReady] = useState(false);
 
+  const isLinux = /linux/i.test(window.navigator.userAgent);
   const { t } = useTranslation();
 
   const refreshData = () => {
@@ -35,15 +36,23 @@ export default function Settings() {
     <Layout>
       <div className="flex min-h-full max-w-screen-sm flex-col p-5 text-gray-700 dark:text-gray-300">
         <h1 className="mb-5 line-clamp-1 text-3xl">{t("settings")}</h1>
-        <div className="flex justify-between rounded-lg rounded-b-none border border-b-0 bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
-          <h2 className="tracking-tight">{t("launch-at-login")}</h2>
+
+        <div className="flex items-center justify-between rounded-lg rounded-b-none border border-b-0 bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
+          <div className={isLinux ? "opacity-50" : "opacity-100"}>
+            <h2 className="tracking-tight">{t("launch-at-login")}</h2>
+            <div className="text-xs tracking-tight">
+              {isLinux && t("not-yet-compatible")}
+            </div>
+          </div>
           <Toggle
             value={launchAtLogin}
+            disabled={isLinux}
             onChange={(enabled) => {
               window.electron.setLaunchAtLogin(enabled);
             }}
           />
         </div>
+
         <div className="flex justify-between rounded-lg rounded-t-none border bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
           <h2 className="tracking-tight">{t("dark-mode")}</h2>
           <Toggle
