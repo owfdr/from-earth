@@ -1,22 +1,22 @@
-<img src="./assets/icon.png" alt="logo" width="128">
+<img src="./assets/icon.png" alt="로고" width="128">
 
 [English](./README.md) | [日本語](./README_ja.md) | [简体中文](./README_zh-CN.md) | [繁體中文](./README_zh-TW.md) | [한국어](./README_ko.md)
 
-# From Earth
+# 지구에서
 
-Let's explore beautiful places on Earth.
+지구의 아름다운 곳을 탐험해봅시다.
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
-## Features
+## 특징
 
-- Explore thousands of beautiful places
-- Set as your wallpaper
-- Add it to your favorites
+- 수천 개의 아름다운 장소 탐험
+- 배경화면으로 설정
+- 즐겨찾기에 추가
 
-And more!
+그 외에도 더!
 
-## Download
+## 다운로드
 
 <div>
     <a href="">
@@ -36,12 +36,12 @@ And more!
     </a>
 </div>
 
-## Screenshots
+## 스크린샷
 
-On Windows
+Windows에서
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-On Ubuntu (Linux)
+Ubuntu (Linux)에서
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">

@@ -4,19 +4,19 @@
 
 # From Earth
 
-Let's explore beautiful places on Earth.
+この美しい地球を探索しよう！
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
 ## Features
 
-- Explore thousands of beautiful places
-- Set as your wallpaper
-- Add it to your favorites
+- 数千の美しい場所を探索
+- 壁紙として設定
+- お気に入りに追加
 
-And more!
+など！
 
-## Download
+## ダウンロード
 
 <div>
     <a href="">
@@ -36,12 +36,12 @@ And more!
     </a>
 </div>
 
-## Screenshots
+## スクリーンショット
 
-On Windows
+Windows (英語版)
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-On Ubuntu (Linux)
+Ubuntu (英語版)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">

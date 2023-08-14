@@ -4,19 +4,19 @@
 
 # From Earth
 
-Let's explore beautiful places on Earth.
+让我们探索地球上的美丽之地。
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
-## Features
+## 特性
 
-- Explore thousands of beautiful places
-- Set as your wallpaper
-- Add it to your favorites
+- 探索数千个美丽的地方
+- 设为您的壁纸
+- 加入到您的收藏夹
 
-And more!
+还有更多！
 
-## Download
+## 下载
 
 <div>
     <a href="">
@@ -36,12 +36,12 @@ And more!
     </a>
 </div>
 
-## Screenshots
+## 截图
 
-On Windows
+在 Windows
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-On Ubuntu (Linux)
+在 Ubuntu (Linux)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
