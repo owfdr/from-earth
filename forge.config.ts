@@ -23,7 +23,7 @@ const config: ForgeConfig = {
       setupIcon: "./assets/icon.ico",
       // iconUrl: "" TODO: add iconUrl for windows
     }),
-    new MakerZIP({}, ["darwin"]),
+    new MakerZIP({}, ["darwin", "linux", "win32"]),
     new MakerRpm({}),
     new MakerDeb({
       options: {
