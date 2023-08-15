@@ -1,6 +1,6 @@
 <img src="./assets/icon.png" alt="logo" width="128">
 
-[English](./README.md) | [日本語](./README_ja.md) | [简体中文](./README_zh-CN.md) | [繁體中文](./README_zh-TW.md) | [한국어](./README_ko.md)
+[English](./README.md) | [日本語](./README.ja.md) | [简体中文](./README.zh-CN.md) | [繁體中文](./README.zh-TW.md) | [한국어](./README.ko.md)
 
 # From Earth
 

@@ -1,22 +1,22 @@
 <img src="./assets/icon.png" alt="logo" width="128">
 
-[English](./README.md) | [日本語](./README_ja.md) | [简体中文](./README_zh-CN.md) | [繁體中文](./README_zh-TW.md) | [한국어](./README_ko.md)
+[English](./README.md) | [日本語](./README.ja.md) | [简体中文](./README.zh-CN.md) | [繁體中文](./README.zh-TW.md) | [한국어](./README.ko.md)
 
 # From Earth
 
-讓我們探索地球上的美麗景點。
+この美しい地球を探索しよう！
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
-## 功能
+## 機能
 
-- 探索數千個美麗的地方
-- 設為您的桌布
-- 加入到您的收藏
+- 数千の美しい場所を探索
+- 壁紙として設定
+- お気に入りに追加
 
-還有更多！
+など！
 
-## 下載
+## ダウンロード
 
 <div>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/From.Earth-darwin-universal-1.0.0.zip">
@@ -36,12 +36,12 @@
     </a>
 </div>
 
-## 截圖
+## スクリーンショット
 
-在 Windows
+Windows (英語版)
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-在 Ubuntu (Linux)
+Ubuntu (英語版)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">

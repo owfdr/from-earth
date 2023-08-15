@@ -1,22 +1,22 @@
-<img src="./assets/icon.png" alt="로고" width="128">
+<img src="./assets/icon.png" alt="logo" width="128">
 
-[English](./README.md) | [日本語](./README_ja.md) | [简体中文](./README_zh-CN.md) | [繁體中文](./README_zh-TW.md) | [한국어](./README_ko.md)
+[English](./README.md) | [日本語](./README.ja.md) | [简体中文](./README.zh-CN.md) | [繁體中文](./README.zh-TW.md) | [한국어](./README.ko.md)
 
-# 지구에서
+# From Earth
 
-지구의 아름다운 곳을 탐험해봅시다.
+让我们探索地球上的美丽之地。
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
-## 특징
+## 特性
 
-- 수천 개의 아름다운 장소 탐험
-- 배경화면으로 설정
-- 즐겨찾기에 추가
+- 探索数千个美丽的地方
+- 设为您的壁纸
+- 加入到您的收藏夹
 
-그 외에도 더!
+还有更多！
 
-## 다운로드
+## 下载
 
 <div>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/From.Earth-darwin-universal-1.0.0.zip">
@@ -36,12 +36,12 @@
     </a>
 </div>
 
-## 스크린샷
+## 截图
 
-Windows에서
+在 Windows
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-Ubuntu (Linux)에서
+在 Ubuntu (Linux)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
