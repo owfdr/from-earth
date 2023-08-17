@@ -4,7 +4,7 @@
 
 # From Earth
 
-この美しい地球を探索しよう！
+美しい地球を探索しよう！
 
 <img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
 
