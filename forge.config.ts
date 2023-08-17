@@ -20,11 +20,20 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
+      iconUrl: "https://github.com/owfdr/from-earth/blob/main/assets/icon.ico",
       setupIcon: "./assets/icon.ico",
-      // iconUrl: "" TODO: add iconUrl for windows
     }),
     new MakerZIP({}, ["darwin", "linux", "win32"]),
-    new MakerRpm({}),
+    new MakerRpm({
+      options: {
+        icon: "./assets/icon.png",
+        productName: "From Earth",
+        description: "Explore beautiful places",
+        productDescription:
+          "Discover breathtaking images of our blue planet. Transform your device with captivating landscapes.",
+        categories: ["Utility"],
+      },
+    }),
     new MakerDeb({
       options: {
         icon: "./assets/icon.png",

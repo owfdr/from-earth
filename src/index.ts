@@ -15,6 +15,8 @@ import { menubar } from "menubar";
 import path from "path";
 import { setWallpaper } from "wallpaper";
 
+import "./assets/icon.png";
+import "./assets/icon@2x.png";
 import "./assets/iconDark.ico";
 import "./assets/iconDark.png";
 import "./assets/iconLight.ico";
@@ -63,6 +65,7 @@ const defaultConfig: BrowserWindowConstructorOptions = {
   show: false,
   frame: false,
   resizable: false,
+  icon: path.join(__dirname, "assets", "icon.png"),
   alwaysOnTop: process.env.NODE_ENV === "development" ? true : false,
   backgroundColor: store.get("userSettings").theme === "dark" ? "#000" : "#fff",
   webPreferences: {
