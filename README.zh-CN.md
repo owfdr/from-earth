@@ -6,7 +6,7 @@
 
 让我们探索地球上的美丽之地。
 
-<img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
+<img src="./assets/cover-image.zh-CN.png" alt="Cover Image" width="512">
 
 ## 特性
 
@@ -61,3 +61,7 @@
 在 Ubuntu (Linux)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
+
+在 MacOS (深色模式)
+
+<img src="./assets/dark-mode.png" width="512">

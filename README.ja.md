@@ -6,7 +6,7 @@
 
 美しい地球を探索しよう！
 
-<img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
+<img src="./assets/cover-image.ja.png" alt="Cover Image" width="512">
 
 ## 機能
 
@@ -54,10 +54,14 @@
 
 ## スクリーンショット
 
-Windows (英語版)
+Windows (英語)
 
 <img src="./assets/Screenshot 2023-08-09 at 18.39.17.png" width="512">
 
-Ubuntu (英語版)
+Ubuntu (英語)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
+
+On MacOS (英語, ダークモード)
+
+<img src="./assets/dark-mode.png" width="512">

@@ -6,7 +6,7 @@
 
 Let's explore beautiful places on Earth.
 
-<img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
+<img src="./assets/cover-image.png" alt="Cover Image" width="512">
 
 ## Features
 
@@ -61,3 +61,7 @@ On Windows
 On Ubuntu (Linux)
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
+
+On MacOS (Dark Mode)
+
+<img src="./assets/dark-mode.png" width="512">

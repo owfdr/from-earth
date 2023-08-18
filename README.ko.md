@@ -6,7 +6,7 @@
 
 지구의 아름다운 곳을 탐험해봅시다.
 
-<img src="./assets/Screenshot 2023-08-14 at 19.30.13.png" width="512">
+<img src="./assets/cover-image.ko.png" alt="Cover Image" width="512">
 
 ## 특징
 
@@ -61,3 +61,7 @@ Windows에서
 Ubuntu (Linux)에서
 
 <img src="./assets/Screenshot 2023-08-14 at 19.47.17.png" width="512">
+
+On MacOS에서 (다크 모드)
+
+<img src="./assets/dark-mode.png" width="512">
