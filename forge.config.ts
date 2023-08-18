@@ -23,7 +23,7 @@ const config: ForgeConfig = {
       iconUrl: "https://github.com/owfdr/from-earth/blob/main/assets/icon.ico",
       setupIcon: "./assets/icon.ico",
     }),
-    new MakerZIP({}, ["darwin", "linux", "win32"]),
+    new MakerZIP({}, ["darwin", "win32"]),
     new MakerRpm({
       options: {
         icon: "./assets/icon.png",
