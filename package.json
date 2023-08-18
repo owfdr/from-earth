@@ -1,7 +1,7 @@
 {
   "name": "from-earth",
   "productName": "from-earth",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Explore beautiful places on Earth",
   "main": ".webpack/main",
   "scripts": {
