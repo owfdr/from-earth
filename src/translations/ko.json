@@ -1,1 +1,24 @@
-{}
+{
+  "search-in-google": "Google에서 검색",
+  "open-in-wikipedia": "위키백과에서 열기",
+  "wikipedia-not-found": "위키백과를 찾을 수 없습니다.",
+  "attribution": "출처",
+  "lat": "위도",
+  "long": "경도",
+  "open-in-google-earth": "Google Earth에서 열기",
+  "open-in-google-maps": "Google 지도에서 열기",
+  "set-as-wallpaper": "바탕화면으로 설정",
+  "toggle-favorite": "즐겨찾기 전환",
+  "get-new-image": "새 이미지 가져오기",
+  "favorites": "즐겨찾기",
+  "no-favorites-yet": "아직 즐겨찾기가 없습니다.",
+  "remove-from-favorites": "즐겨찾기에서 제거",
+  "no-internet-connection": "인터넷 연결이 없습니다",
+  "this-app-requires-an-internet...": "이 앱은 올바르게 작동하기 위해 인터넷 연결이 필요합니다. 연결 상태를 확인한 후 다시 시도해 주세요.",
+  "settings": "설정",
+  "launch-at-login": "로그인 시 시작",
+  "not-yet-compatible": "아직 리눅스와 호환되지 않는 기능",
+  "dark-mode": "다크 모드",
+  "language": "언어",
+  "quit-app": "앱 종료"
+}

@@ -1,1 +1,24 @@
-{}
+{
+  "search-in-google": "在Google中搜尋",
+  "open-in-wikipedia": "在維基百科中開啟",
+  "wikipedia-not-found": "找不到維基百科。",
+  "attribution": "屬性",
+  "lat": "緯度",
+  "long": "經度",
+  "open-in-google-earth": "在Google Earth中開啟",
+  "open-in-google-maps": "在Google地圖中開啟",
+  "set-as-wallpaper": "設為桌面背景",
+  "toggle-favorite": "切換收藏",
+  "get-new-image": "取得新圖片",
+  "favorites": "我的收藏",
+  "no-favorites-yet": "尚未有收藏。",
+  "remove-from-favorites": "從收藏中移除",
+  "no-internet-connection": "無網路連接",
+  "this-app-requires-an-internet...": "此應用程式需要網路連接才能正常運作。請檢查您的連線後再試一次。",
+  "settings": "設定",
+  "launch-at-login": "登入時啟動",
+  "not-yet-compatible": "此功能尚不支援Linux",
+  "dark-mode": "深色模式",
+  "language": "語言",
+  "quit-app": "退出應用程式"
+}

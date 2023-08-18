@@ -1,1 +1,24 @@
-{}
+{
+    "search-in-google": "用Google中搜索",
+    "open-in-wikipedia": "打開维基百科",
+    "wikipedia-not-found": "找不到维基百科。",
+    "attribution": "属性",
+    "lat": "纬度",
+    "long": "经度",
+    "open-in-google-earth": "打开Google Earth",
+    "open-in-google-maps": "打开Google地图",
+    "set-as-wallpaper": "设为壁纸",
+    "toggle-favorite": "切换收藏",
+    "get-new-image": "获取新图像",
+    "favorites": "我的收藏",
+    "no-favorites-yet": "还没有收藏。",
+    "remove-from-favorites": "从收藏夹中删除",
+    "no-internet-connection": "没有互联网连接",
+    "this-app-requires-an-internet...": "此应用需要互联网连接才能正常工作。请检查您的连接并重试。",
+    "settings": "设置",
+    "launch-at-login": "登录时启动",
+    "not-yet-compatible": "此功能尚不支持Linux",
+    "dark-mode": "深色模式",
+    "language": "语言",
+    "quit-app": "退出应用"
+}
