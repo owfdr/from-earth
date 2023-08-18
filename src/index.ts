@@ -294,12 +294,17 @@ async function fetchWiki(earthView: EarthView, locale: string) {
     keyword,
   )}`;
 
-  const wikiResponse = await fetch(query);
-  const wikiJson = await wikiResponse.json();
-  const wiki =
-    wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
+  try {
+    const wikiResponse = await fetch(query);
+    const wikiJson = await wikiResponse.json();
+    const wiki =
+      wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract ||
+      null;
 
-  return wiki;
+    return wiki;
+  } catch {
+    return null;
+  }
 }
 
 ipcMain.handle("setCurrent", async (_, earthView: EarthView) => {
