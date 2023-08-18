@@ -18,23 +18,37 @@
 
 ## 下載
 
-<div>
-    <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/From.Earth-darwin-universal-1.0.0.zip">
-        <img src="assets/macos.svg" alt="MacOS" width="80">
-    </a>
-    <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/x64-From.Earth-1.0.0.Setup.exe.zip">
-        <img src="assets/windows.svg" alt="Windows" width="80">
-    </a>
-    <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/arm64-From.Earth-1.0.0.Setup.exe.zip">
-        <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
-    </a>
-    <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/deb-from-earth-1.0.0.zip">
-        <img src="assets/debian.svg" alt="Linux Debian" width="80">
-    </a>
-    <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/rpm-from-earth-1.0.0.zip">
-        <img src="assets/red-hat.svg" alt="Linux Red Hat" width="80">
-    </a>
-</div>
+### Mac
+
+<a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/From.Earth-darwin-universal-1.1.0.zip">
+    <img src="assets/macos.svg" alt="MacOS" width="80">
+</a>
+
+### Windows
+
+<a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/From.Earth-win32-x64-1.1.0.zip">
+    <img src="assets/windows.svg" alt="Windows" width="80">
+</a>
+<a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/From.Earth-win32-arm64-1.1.0.zip">
+    <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
+</a>
+
+### Linux
+
+<a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/from-earth_1.1.0_amd64.deb">
+    <img src="assets/debian.svg" alt="Debian" width="80">
+</a>
+    <a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/from-earth_1.1.0_arm64.deb">
+    <img src="assets/debian-arm64.svg" alt="Debian arm64" width="80">
+</a>
+<a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/from-earth-1.1.0-1.x86_64.rpm">
+    <img src="assets/red-hat.svg" alt="Red Hat" width="80">
+</a>
+    <a href="https://github.com/owfdr/from-earth/releases/download/v1.1.0/from-earth-1.1.0-1.arm64.rpm">
+    <img src="assets/red-hat-arm64.svg" alt="Red Hat arm64" width="80">
+</a>
+
+###
 
 請參考[發布](https://github.com/owfdr/from-earth/releases/latest)頁面以獲得所有可用的下載。
 
