@@ -20,19 +20,19 @@
 
 <div>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/From.Earth-darwin-universal-1.0.0.zip">
-        <img src="assets/macos.svg" alt="MacOS" width="64">
+        <img src="assets/macos.svg" alt="MacOS" width="80">
     </a>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/x64-From.Earth-1.0.0.Setup.exe.zip">
-        <img src="assets/windows.svg" alt="Windows" width="64">
+        <img src="assets/windows.svg" alt="Windows" width="80">
     </a>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/arm64-From.Earth-1.0.0.Setup.exe.zip">
-        <img src="assets/windows-arm64.svg" alt="Windows arm64" width="64">
+        <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
     </a>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/deb-from-earth-1.0.0.zip">
-        <img src="assets/debian.svg" alt="Linux Debian" width="64">
+        <img src="assets/debian.svg" alt="Linux Debian" width="80">
     </a>
     <a href="https://github.com/owfdr/from-earth/releases/download/v1.0.0/rpm-from-earth-1.0.0.zip">
-        <img src="assets/red-hat.svg" alt="Linux Red Hat" width="64">
+        <img src="assets/red-hat.svg" alt="Linux Red Hat" width="80">
     </a>
 </div>
 
