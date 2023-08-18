@@ -36,6 +36,8 @@
     </a>
 </div>
 
+有关于所有可用的下载，请参考[发布](https://github.com/owfdr/from-earth/releases/latest)页面。
+
 ## 截图
 
 在 Windows

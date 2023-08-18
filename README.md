@@ -36,6 +36,8 @@ And more!
     </a>
 </div>
 
+For all available downloads, visit the [Releases](https://github.com/owfdr/from-earth/releases/latest) page.
+
 ## Screenshots
 
 On Windows

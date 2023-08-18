@@ -36,6 +36,8 @@
     </a>
 </div>
 
+利用可能な全てのダウンロードは、[リリース](https://github.com/owfdr/from-earth/releases/latest)ページをご参照ください。
+
 ## スクリーンショット
 
 Windows (英語版)
