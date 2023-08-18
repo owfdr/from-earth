@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/owfdr/from-earth/compare/v1.0.0...v1.1.0) (2023-08-18)
+
+
+### Features
+
+* fully localized ([7092ba3](https://github.com/owfdr/from-earth/commit/7092ba375e65f3c2bcde1133c3d7a3863075118f))
+* language select ([3244394](https://github.com/owfdr/from-earth/commit/32443944f60ec4a217918fd785ebeb1c8452bbba))
+
+
+### Bug Fixes
+
+* readme in japanese ([6841afb](https://github.com/owfdr/from-earth/commit/6841afb90426806b503350033be4a34cbf66fd23))
+
 ## 1.0.0 (2023-08-14)
 
 
