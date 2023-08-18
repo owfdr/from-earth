@@ -288,12 +288,9 @@ ipcMain.handle("getCurrent", async (_, locale: string) => {
 });
 
 async function fetchWiki(earthView: EarthView, locale: string) {
-  if (locale === "zh-CN") {
-    locale = "zh";
-  }
-
+  const language = locale.split("-")[0];
   const keyword = earthView.region ? earthView.region : earthView.country;
-  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
+  const query = `https://${language}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
     keyword,
   )}`;
 
