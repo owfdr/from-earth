@@ -21,21 +21,25 @@ export default function Explore() {
   const { t, i18n } = useTranslation();
 
   const fetchCurrent = () => {
-    window.electron.getCurrent().then(({ earthView, wiki, isFavorite }) => {
-      setEarthView(earthView);
-      setWiki(wiki);
-      setIsFavorite(isFavorite);
-      setContentReady(true);
-    });
+    window.electron
+      .getCurrent(i18n.language)
+      .then(({ earthView, wiki, isFavorite }) => {
+        setEarthView(earthView);
+        setWiki(wiki);
+        setIsFavorite(isFavorite);
+        setContentReady(true);
+      });
   };
 
   const fetchNew = () => {
-    window.electron.newView().then(({ earthView, wiki, isFavorite }) => {
-      setEarthView(earthView);
-      setWiki(wiki);
-      setIsFavorite(isFavorite);
-      setContentReady(true);
-    });
+    window.electron
+      .newView(i18n.language)
+      .then(({ earthView, wiki, isFavorite }) => {
+        setEarthView(earthView);
+        setWiki(wiki);
+        setIsFavorite(isFavorite);
+        setContentReady(true);
+      });
   };
 
   useEffect(() => {

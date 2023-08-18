@@ -207,30 +207,6 @@ ipcMain.handle("openUrl", async (_, url) => {
   await shell.openExternal(url);
 });
 
-// Get random earth view
-ipcMain.handle("newView", async () => {
-  // TODO: logic isolation
-  const earthView = earthViews[Math.floor(Math.random() * earthViews.length)];
-
-  const keyword = earthView.region ? earthView.region : earthView.country;
-  const locale = app.getLocale().split("-")[0];
-  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
-    keyword,
-  )}`;
-  const wikiResponse = await fetch(query);
-  const wikiJson = await wikiResponse.json();
-  const wiki =
-    wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
-
-  const isFavorite = store
-    .get("favorites")
-    .some((favorite) => favorite.id === earthView.id);
-
-  store.set("current", earthView);
-
-  return { earthView, wiki, isFavorite };
-});
-
 ipcMain.handle("setWallpaper", async (_, id) => {
   // TODO: logic isolation
   const earthView = earthViews.find((earthView) => earthView.id === id);
@@ -284,18 +260,25 @@ ipcMain.handle("removeFavorite", async (_, id: string) => {
   store.set("favorites", newFavorites);
 });
 
-ipcMain.handle("getCurrent", async () => {
+ipcMain.handle("newView", async (_, locale: string) => {
+  const random = Math.floor(Math.random() * earthViews.length);
+  const earthView = earthViews[random] as EarthView;
+
+  const wiki = await fetchWiki(earthView, locale);
+
+  const isFavorite = store
+    .get("favorites")
+    .some((favorite) => favorite.id === earthView.id);
+
+  store.set("current", earthView);
+
+  return { earthView, wiki, isFavorite };
+});
+
+ipcMain.handle("getCurrent", async (_, locale: string) => {
   const earthView = store.get("current");
 
-  const keyword = earthView.region ? earthView.region : earthView.country;
-  const locale = app.getLocale().split("-")[0];
-  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
-    keyword,
-  )}`;
-  const wikiResponse = await fetch(query);
-  const wikiJson = await wikiResponse.json();
-  const wiki =
-    wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
+  const wiki = await fetchWiki(earthView, locale);
 
   const isFavorite = store
     .get("favorites")
@@ -303,6 +286,24 @@ ipcMain.handle("getCurrent", async () => {
 
   return { earthView, wiki, isFavorite };
 });
+
+async function fetchWiki(earthView: EarthView, locale: string) {
+  if (locale === "zh-CN") {
+    locale = "zh";
+  }
+
+  const keyword = earthView.region ? earthView.region : earthView.country;
+  const query = `https://${locale}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${encodeURI(
+    keyword,
+  )}`;
+
+  const wikiResponse = await fetch(query);
+  const wikiJson = await wikiResponse.json();
+  const wiki =
+    wikiJson.query.pages[Object.keys(wikiJson.query.pages)[0]].extract || null;
+
+  return wiki;
+}
 
 ipcMain.handle("setCurrent", async (_, earthView: EarthView) => {
   store.set("current", earthView);

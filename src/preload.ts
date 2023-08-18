@@ -2,8 +2,8 @@ import { contextBridge, ipcRenderer } from "electron";
 
 const electronHandler = {
   openUrl: (url: string) => ipcRenderer.invoke("openUrl", url),
-  newView: () =>
-    ipcRenderer.invoke("newView") as Promise<{
+  newView: (locale: string) =>
+    ipcRenderer.invoke("newView", locale) as Promise<{
       earthView: EarthView;
       wiki: string;
       isFavorite: boolean;
@@ -19,7 +19,7 @@ const electronHandler = {
   addFavorite: (earthView: EarthView) =>
     ipcRenderer.invoke("addFavorite", earthView),
   removeFavorite: (id: string) => ipcRenderer.invoke("removeFavorite", id),
-  getCurrent: () => ipcRenderer.invoke("getCurrent"),
+  getCurrent: (locale: string) => ipcRenderer.invoke("getCurrent", locale),
   setCurrent: (earthView: EarthView) =>
     ipcRenderer.invoke("setCurrent", earthView),
   quitApp: () => ipcRenderer.invoke("quitApp"),

@@ -8,6 +8,7 @@ import { RouterProvider, createHashRouter, redirect } from "react-router-dom";
 import "./index.css";
 import Explore from "./page/Explore";
 import Favorites from "./page/Favorites";
+import Language from "./page/Language";
 import Settings from "./page/Settings";
 import { ElectronHandler } from "./preload";
 import en from "./translations/en.json";
@@ -21,6 +22,13 @@ declare global {
     electron: ElectronHandler;
   }
 }
+
+window.electron.getUserSettings().then(({ theme }) => {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+});
+
+const container = document.getElementById("root") as HTMLElement;
+const root = createRoot(container);
 
 // eslint-disable-next-line import/no-named-as-default-member
 i18next
@@ -48,13 +56,6 @@ i18next
     },
   });
 
-window.electron.getUserSettings().then(({ theme }) => {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-});
-
-const container = document.getElementById("root") as HTMLElement;
-const root = createRoot(container);
-
 root.render(
   React.createElement(
     I18nextProvider,
@@ -72,6 +73,10 @@ root.render(
         {
           path: "/settings",
           element: React.createElement(Settings),
+        },
+        {
+          path: "/settings/language",
+          element: React.createElement(Language),
         },
         {
           path: "/favorites",
