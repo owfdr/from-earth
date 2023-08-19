@@ -1,5 +1,5 @@
 import i18next, { changeLanguage } from "i18next";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { HiChevronLeft, HiOutlineCheck } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
