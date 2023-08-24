@@ -65,3 +65,9 @@ Ubuntu (Linux)에서
 On MacOS에서 (다크 모드)
 
 <img src="./assets/dark-mode.png" width="512">
+
+## 🧑‍💻 다른 앱
+
+확인해보세요:
+
+- [Our World](https://ourworld.center/apps) (공식 웹사이트)

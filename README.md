@@ -65,3 +65,9 @@ On Ubuntu (Linux)
 On MacOS (Dark Mode)
 
 <img src="./assets/dark-mode.png" width="512">
+
+## 🧑‍💻 Other Apps
+
+Check out:
+
+- [Our World](https://ourworld.center/apps) (Official Website)

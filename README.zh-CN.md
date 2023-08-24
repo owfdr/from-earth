@@ -65,3 +65,9 @@
 在 MacOS (深色模式)
 
 <img src="./assets/dark-mode.png" width="512">
+
+## 🧑‍💻 其他应用
+
+请查看:
+
+- [Our World](https://ourworld.center/apps) (官方网站)

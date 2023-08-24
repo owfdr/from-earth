@@ -65,3 +65,9 @@ Ubuntu (英語)
 On MacOS (英語, ダークモード)
 
 <img src="./assets/dark-mode.png" width="512">
+
+## 🧑‍💻 その他のアプリ
+
+こちらから:
+
+- [Our World](https://ourworld.center/apps) (公式ウェブサイト)
