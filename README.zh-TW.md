@@ -70,4 +70,4 @@
 
 請查看:
 
-- [Our World](https://ourworld.center/apps) (官方網站)
+- [Our World](https://ourworld.center/zh/apps) (官方網站)

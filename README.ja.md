@@ -70,4 +70,4 @@ On MacOS (英語, ダークモード)
 
 こちらから:
 
-- [Our World](https://ourworld.center/apps) (公式ウェブサイト)
+- [Our World](https://ourworld.center/ja/apps) (公式ウェブサイト)

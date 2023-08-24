@@ -70,4 +70,4 @@ On MacOS에서 (다크 모드)
 
 확인해보세요:
 
-- [Our World](https://ourworld.center/apps) (공식 웹사이트)
+- [Our World](https://ourworld.center/ko/apps) (공식 웹사이트)
