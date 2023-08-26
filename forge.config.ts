@@ -20,7 +20,8 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
-      iconUrl: "https://github.com/owfdr/from-earth/blob/main/assets/icon.ico",
+      iconUrl:
+        "https://raw.githubusercontent.com/owfdr/from-earth/main/assets/icon.ico",
       setupIcon: "./assets/icon.ico",
     }),
     new MakerZIP({}, ["darwin", "win32"]),
